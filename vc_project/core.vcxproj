@@ -10,6 +10,13 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\exception.cpp" />
+    <ClCompile Include="..\src\login.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\login_impl.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1D026D73-CEAF-440A-9798-7C5D67CC0064}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -74,9 +81,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
