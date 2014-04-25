@@ -2,9 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\src\login.cpp" />
-    <ClCompile Include="..\src\exception.cpp" />
+    <ClCompile Include="..\src\desktop.cpp" />
+    <ClCompile Include="..\src\logon_session.cpp" />
+    <ClCompile Include="..\src\window_station.cpp" />
+    <ClCompile Include="..\src\user_object.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\login_impl.hpp" />
+    <ClInclude Include="..\src\desktop.hpp" />
+    <ClInclude Include="..\src\logon_session.hpp" />
+    <ClInclude Include="..\src\window_station.hpp" />
+    <ClInclude Include="..\src\user_object.hpp" />
   </ItemGroup>
 </Project>

@@ -11,11 +11,18 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\exception.cpp" />
+    <ClCompile Include="..\src\desktop.cpp" />
     <ClCompile Include="..\src\login.cpp" />
+    <ClCompile Include="..\src\logon_session.cpp" />
+    <ClCompile Include="..\src\user_object.cpp" />
+    <ClCompile Include="..\src\window_station.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\desktop.hpp" />
     <ClInclude Include="..\src\login_impl.hpp" />
+    <ClInclude Include="..\src\logon_session.hpp" />
+    <ClInclude Include="..\src\user_object.hpp" />
+    <ClInclude Include="..\src\window_station.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1D026D73-CEAF-440A-9798-7C5D67CC0064}</ProjectGuid>

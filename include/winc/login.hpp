@@ -12,7 +12,7 @@ public:
 
 	struct impl;
 private:
-	std::shared_ptr<impl> impl;
+	std::shared_ptr<impl> _impl;
 };
 
 }

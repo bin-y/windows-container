@@ -6,6 +6,7 @@ using namespace std;
 using namespace winc;
 
 login::login(const string &username, const string &password)
+	: _impl(new impl)
 {
 
 }
