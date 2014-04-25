@@ -9,6 +9,7 @@ namespace winc {
 class login {
 public:
 	login(const std::string &username, const std::string &password);
+	void grant_access(const std::string &path);
 
 	struct impl;
 private:

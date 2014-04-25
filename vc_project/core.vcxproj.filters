@@ -3,15 +3,15 @@
   <ItemGroup>
     <ClCompile Include="..\src\login.cpp" />
     <ClCompile Include="..\src\desktop.cpp" />
-    <ClCompile Include="..\src\logon_session.cpp" />
     <ClCompile Include="..\src\window_station.cpp" />
     <ClCompile Include="..\src\user_object.cpp" />
+    <ClCompile Include="..\src\user_token.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\login_impl.hpp" />
     <ClInclude Include="..\src\desktop.hpp" />
-    <ClInclude Include="..\src\logon_session.hpp" />
     <ClInclude Include="..\src\window_station.hpp" />
     <ClInclude Include="..\src\user_object.hpp" />
+    <ClInclude Include="..\src\user_token.hpp" />
   </ItemGroup>
 </Project>

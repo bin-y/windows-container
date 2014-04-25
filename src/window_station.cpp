@@ -10,9 +10,9 @@ namespace {
 
 HANDLE get_process_window_station()
 {
-	HANDLE result = ::GetProcessWindowStation();
+	HANDLE result = GetProcessWindowStation();
 	if (!result) {
-		throw system_error(::GetLastError(), system_category());
+		throw system_error(GetLastError(), system_category());
 	}
 	return result;
 }
