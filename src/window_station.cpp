@@ -1,7 +1,7 @@
-#include <system_error>
 #include <string>
 #include <Windows.h>
 #include "window_station.hpp"
+#include "windows_error.hpp"
 
 using namespace std;
 using namespace winc;
@@ -12,7 +12,7 @@ HANDLE get_process_window_station()
 {
 	HANDLE result = GetProcessWindowStation();
 	if (!result) {
-		throw system_error(GetLastError(), system_category());
+		throw windows_error(GetLastError());
 	}
 	return result;
 }

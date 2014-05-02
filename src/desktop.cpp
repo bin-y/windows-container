@@ -1,7 +1,7 @@
-#include <system_error>
 #include <string>
 #include <Windows.h>
 #include "desktop.hpp"
+#include "windows_error.hpp"
 
 using namespace std;
 using namespace winc;
@@ -14,7 +14,7 @@ HANDLE create_desktop(const string &name)
 		DESKTOP_READOBJECTS | DESKTOP_CREATEWINDOW | DESKTOP_WRITEOBJECTS |
 		READ_CONTROL | WRITE_DAC | DESKTOP_SWITCHDESKTOP, 0);
 	if (!result) {
-		throw system_error(GetLastError(), system_category());
+		throw windows_error(GetLastError());
 	}
 	return result;
 }

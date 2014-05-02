@@ -2,16 +2,57 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="..\src\login.cpp" />
-    <ClCompile Include="..\src\desktop.cpp" />
-    <ClCompile Include="..\src\window_station.cpp" />
-    <ClCompile Include="..\src\user_object.cpp" />
-    <ClCompile Include="..\src\user_token.cpp" />
+    <ClCompile Include="..\src\user_token.cpp">
+      <Filter>system-wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\desktop.cpp">
+      <Filter>system-wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\user_object.cpp">
+      <Filter>system-wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\window_station.cpp">
+      <Filter>system-wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\process.cpp">
+      <Filter>system-wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\container.cpp" />
+    <ClCompile Include="..\src\windows_error.cpp">
+      <Filter>error</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\login_impl.hpp" />
-    <ClInclude Include="..\src\desktop.hpp" />
-    <ClInclude Include="..\src\window_station.hpp" />
-    <ClInclude Include="..\src\user_object.hpp" />
-    <ClInclude Include="..\src\user_token.hpp" />
+    <ClInclude Include="..\src\user_token.hpp">
+      <Filter>system-wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\desktop.hpp">
+      <Filter>system-wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\user_object.hpp">
+      <Filter>system-wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\window_station.hpp">
+      <Filter>system-wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\process.hpp">
+      <Filter>system-wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\container_impl.hpp" />
+    <ClInclude Include="..\src\windows_error.hpp">
+      <Filter>error</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="system-wrapper">
+      <UniqueIdentifier>{debcd039-21a2-4b07-8650-2bc66ade37bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utility">
+      <UniqueIdentifier>{137d4373-4331-4814-92fb-668bb8ab8e43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="error">
+      <UniqueIdentifier>{aeffa34a-2e13-487d-a1cc-e6ae28fa2566}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

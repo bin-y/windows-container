@@ -1,8 +1,8 @@
-#include <system_error>
 #include <string>
 #include <vector>
 #include <Windows.h>
 #include "user_token.hpp"
+#include "windows_error.hpp"
 
 using namespace std;
 using namespace winc;
@@ -15,7 +15,7 @@ HANDLE logon_user(const string &username, const string &password)
 	BOOL success = LogonUserA(username.c_str(), ".", password.c_str(),
 		LOGON32_LOGON_INTERACTIVE, LOGON32_PROVIDER_DEFAULT, &result);
 	if (!success) {
-		throw system_error(GetLastError(), system_category());
+		throw windows_error(GetLastError());
 	}
 	return result;
 }
@@ -23,7 +23,7 @@ HANDLE logon_user(const string &username, const string &password)
 }
 
 user_token::user_token(const std::string &username, const std::string &password)
-	: _handle(::logon_user(username, password))
+	: _handle(logon_user(username, password))
 {}
 
 user_token::~user_token()
@@ -46,7 +46,7 @@ vector<char> user_token::sid()
 	if (!::GetTokenInformation(_handle, TokenGroups, NULL, NULL, &length)) {
 		DWORD error_code = GetLastError();
 		if (error_code != ERROR_INSUFFICIENT_BUFFER) {
-			throw system_error(error_code, system_category());
+			throw windows_error(error_code);
 		}
 	} else {
 		length = 0;
@@ -59,7 +59,7 @@ vector<char> user_token::sid()
 	buffer.resize(length);
 	ptg = reinterpret_cast<PTOKEN_GROUPS>(buffer.data());
 	if (!::GetTokenInformation(_handle, TokenGroups, ptg, length, &length)) {
-		throw system_error(GetLastError(), system_category());
+		throw windows_error(GetLastError());
 	}
 
 	for (index = 0; index < ptg->GroupCount; ++index) {
@@ -70,7 +70,7 @@ vector<char> user_token::sid()
 			}
 			vector<char> sid(length);
 			if (!::CopySid(length, sid.data(), ptg->Groups[index].Sid)) {
-				throw system_error(GetLastError(), system_category());
+				throw windows_error(GetLastError());
 			}
 			return sid;
 		}

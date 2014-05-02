@@ -11,17 +11,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\container.cpp" />
     <ClCompile Include="..\src\desktop.cpp" />
     <ClCompile Include="..\src\login.cpp" />
+    <ClCompile Include="..\src\process.cpp" />
     <ClCompile Include="..\src\user_token.cpp" />
     <ClCompile Include="..\src\user_object.cpp" />
+    <ClCompile Include="..\src\windows_error.cpp" />
     <ClCompile Include="..\src\window_station.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\container_impl.hpp" />
     <ClInclude Include="..\src\desktop.hpp" />
     <ClInclude Include="..\src\login_impl.hpp" />
+    <ClInclude Include="..\src\process.hpp" />
     <ClInclude Include="..\src\user_token.hpp" />
     <ClInclude Include="..\src\user_object.hpp" />
+    <ClInclude Include="..\src\windows_error.hpp" />
     <ClInclude Include="..\src\window_station.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -64,7 +70,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;WIN32_NO_STATUS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -79,7 +85,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;WIN32_NO_STATUS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
