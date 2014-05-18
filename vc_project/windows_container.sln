@@ -7,6 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "core.vcxproj", "{1D
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "winc", "winc.vcxproj", "{0CB26D4F-31B8-4746-AE75-6CB34374A8E4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "timer_queue_test", "test\timer_queue_test.vcxproj", "{60FE833E-B141-4894-A545-05A18B5BB9CA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{53DA476F-8758-433E-8261-1DA364743692}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,8 +25,15 @@ Global
 		{0CB26D4F-31B8-4746-AE75-6CB34374A8E4}.Debug|Win32.Build.0 = Debug|Win32
 		{0CB26D4F-31B8-4746-AE75-6CB34374A8E4}.Release|Win32.ActiveCfg = Release|Win32
 		{0CB26D4F-31B8-4746-AE75-6CB34374A8E4}.Release|Win32.Build.0 = Release|Win32
+		{60FE833E-B141-4894-A545-05A18B5BB9CA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{60FE833E-B141-4894-A545-05A18B5BB9CA}.Debug|Win32.Build.0 = Debug|Win32
+		{60FE833E-B141-4894-A545-05A18B5BB9CA}.Release|Win32.ActiveCfg = Release|Win32
+		{60FE833E-B141-4894-A545-05A18B5BB9CA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{60FE833E-B141-4894-A545-05A18B5BB9CA} = {53DA476F-8758-433E-8261-1DA364743692}
 	EndGlobalSection
 EndGlobal

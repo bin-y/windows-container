@@ -21,6 +21,12 @@
     <ClCompile Include="..\src\windows_error.cpp">
       <Filter>error</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\job_object.cpp">
+      <Filter>system-wrapper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\timer_queue.cpp">
+      <Filter>utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\login_impl.hpp" />
@@ -42,6 +48,15 @@
     <ClInclude Include="..\src\container_impl.hpp" />
     <ClInclude Include="..\src\windows_error.hpp">
       <Filter>error</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\job_object.hpp">
+      <Filter>system-wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\timer_queue.hpp">
+      <Filter>utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\action.hpp">
+      <Filter>utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
