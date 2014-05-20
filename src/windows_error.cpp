@@ -7,12 +7,12 @@ using namespace std;
 
 namespace {
 
-HMODULE ntdll_base = NULL;
+HMODULE g_ntdll_base = NULL;
 
 string format_message(DWORD error_code, bool allow_nt_status = false, bool reenter = false)
 {
-	if (allow_nt_status && !ntdll_base) {
-		ntdll_base = GetModuleHandleA("ntdll.dll");
+	if (allow_nt_status && !g_ntdll_base) {
+		g_ntdll_base = GetModuleHandleA("ntdll.dll");
 	}
 
 	char *message = NULL;
@@ -25,7 +25,7 @@ string format_message(DWORD error_code, bool allow_nt_status = false, bool reent
 			FORMAT_MESSAGE_FROM_HMODULE |
 			FORMAT_MESSAGE_IGNORE_INSERTS |
 			FORMAT_MESSAGE_MAX_WIDTH_MASK,
-			ntdll_base,
+			g_ntdll_base,
 			error_code,
 			LANG_USER_DEFAULT,
 			(LPSTR)&message,

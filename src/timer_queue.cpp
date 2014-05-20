@@ -17,19 +17,19 @@ using namespace winc;
 
 namespace {
 
-ULARGE_INTEGER prev_tick = {0};
-spin_mutex prev_tick_lock;
+ULARGE_INTEGER g_prev_tick = {0};
+spin_mutex g_prev_tick_lock;
 
 uint64_t get_tick_count_64()
 {
 	DWORD tick_lo = GetTickCount();
 
-	lock_scope<spin_mutex> lock(prev_tick_lock);
-	if (tick_lo < prev_tick.LowPart) {
-		++prev_tick.HighPart;
+	lock_scope<spin_mutex> lock(g_prev_tick_lock);
+	if (tick_lo < g_prev_tick.LowPart) {
+		++g_prev_tick.HighPart;
 	}
-	prev_tick.LowPart = tick_lo;
-	return to_uint64(prev_tick);
+	g_prev_tick.LowPart = tick_lo;
+	return to_uint64(g_prev_tick);
 }
 
 }
