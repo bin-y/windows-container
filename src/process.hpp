@@ -13,7 +13,7 @@ public:
 	void terminate(int32_t exit_code);
 	uint32_t id();
 	void start_timer();
-	uint32_t alive_time_ms(uint32_t processor_count);
+	uint32_t alive_time_ms();
 	uint32_t peak_memory_usage_kb();
 	uint32_t virtual_protect(void *address, size_t length, uint32_t new_protect);
 	void read_memory(const void *address, void *buffer, size_t length);

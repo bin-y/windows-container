@@ -5,8 +5,6 @@
 #include <cstdint>
 
 struct winc::container::impl {
-	uint32_t processor_count;
-
 	impl();
 };
 

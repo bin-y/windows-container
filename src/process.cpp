@@ -18,6 +18,20 @@ using stlsoft::to_uint64;
 
 namespace {
 
+uint32_t g_processor_count = 0;
+
+uint32_t get_processor_count()
+{
+	if (g_processor_count != 0)
+		return g_processor_count;
+
+	SYSTEM_INFO system_info;
+	GetSystemInfo(&system_info);
+	uint32_t result = static_cast<uint32_t>(system_info.dwNumberOfProcessors);
+	g_processor_count = result;
+	return result;
+}
+
 uint64_t get_idle_time()
 {
 	const size_t buffer_length = 328;
@@ -77,14 +91,14 @@ uint64_t process::_process_time()
 		+ to_uint64(reinterpret_cast<ULARGE_INTEGER &>(user_time));
 }
 
-uint32_t process::alive_time_ms(uint32_t processor_count)
+uint32_t process::alive_time_ms()
 {
 	if (!_timer_started) {
 		return 0;
 	} else {
 		return static_cast<uint32_t>(
 			max(_process_time() - _initial_process_time,
-				(get_idle_time() - _initial_idle_time) / processor_count
+				(get_idle_time() - _initial_idle_time) / get_processor_count()
 				) / 10000);
 	}
 }
