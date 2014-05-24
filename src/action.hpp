@@ -16,10 +16,11 @@ public:
 template <typename Extra, typename Callback>
 class action_impl : public action<Extra> {
 public:
-	action_impl(const Extra & extra,
+	action_impl(const Extra &extra,
 		const Callback &callback)
 		: action(extra)
-		{ _callback = callback; }
+		, _callback(callback)
+		{}
 
 	/* override */ void invoke()
 		{ _callback(); }
