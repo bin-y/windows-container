@@ -5,16 +5,15 @@
 #include <algorithm>
 #include <windows.h>
 extern "C" {
-	#include <ntndk.h>
+	#include <extypes.h>
+	#include <exfuncs.h>
 }
 #include <psapi.h>
-#include <winstl/shims/conversion/to_uint64.hpp>
 #include "process.hpp"
 #include "windows_error.hpp"
 
 using namespace std;
 using namespace winc;
-using stlsoft::to_uint64;
 
 namespace {
 
@@ -43,7 +42,7 @@ uint64_t get_idle_time()
 		throw winnt_error(status);
 	}
 
-	return to_uint64(reinterpret_cast<ULARGE_INTEGER &>(spi->IdleProcessTime));
+	return (uint64_t)spi->IdleProcessTime.QuadPart;
 }
 
 }
@@ -81,14 +80,15 @@ void process::start_timer()
 
 uint64_t process::_process_time()
 {
-	FILETIME creation_time, exit_time, kernel_time, user_time;
-	BOOL result = GetProcessTimes(_handle, &creation_time, &exit_time, &kernel_time, &user_time);
+	ULARGE_INTEGER creation_time, exit_time, kernel_time, user_time;
+	BOOL result = GetProcessTimes(_handle,
+		(LPFILETIME)&creation_time, (LPFILETIME)&exit_time,
+		(LPFILETIME)&kernel_time, (LPFILETIME)&user_time);
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
 	
-	return to_uint64(reinterpret_cast<ULARGE_INTEGER &>(kernel_time))
-		+ to_uint64(reinterpret_cast<ULARGE_INTEGER &>(user_time));
+	return (uint64_t)(kernel_time.QuadPart + user_time.QuadPart);
 }
 
 uint32_t process::alive_time_ms()
