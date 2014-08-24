@@ -58,6 +58,12 @@
     <ClInclude Include="..\src\action.hpp">
       <Filter>utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\debug_object.hpp">
+      <Filter>system-wrapper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\non_copyable.hpp">
+      <Filter>utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="system-wrapper">

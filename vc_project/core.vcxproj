@@ -25,9 +25,11 @@
   <ItemGroup>
     <ClInclude Include="..\src\action.hpp" />
     <ClInclude Include="..\src\container_impl.hpp" />
+    <ClInclude Include="..\src\debug_object.hpp" />
     <ClInclude Include="..\src\desktop.hpp" />
     <ClInclude Include="..\src\job_object.hpp" />
     <ClInclude Include="..\src\login_impl.hpp" />
+    <ClInclude Include="..\src\non_copyable.hpp" />
     <ClInclude Include="..\src\process.hpp" />
     <ClInclude Include="..\src\timer_queue.hpp" />
     <ClInclude Include="..\src\user_token.hpp" />
