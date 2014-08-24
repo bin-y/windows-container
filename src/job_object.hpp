@@ -2,13 +2,12 @@
 #define JOB_OBJECT_HPP
 
 #include <cstdint>
-#include <windows.h>
+#include <Windows.h>
+#include "non_copyable.hpp"
 
 namespace winc {
 
-class process;
-
-class job_object {
+class job_object : non_copyable {
 public:
 	class limits_info : public ::JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
 	public:
@@ -36,11 +35,6 @@ public:
 	HANDLE handle();
 	limits_info limits();
 	ui_restrictions_info ui_restrictions();
-
-private:
-	// non-copyable
-	job_object(const job_object &);
-	job_object &operator=(const job_object &);
 
 private:
 	HANDLE _handle;

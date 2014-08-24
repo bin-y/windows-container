@@ -9,7 +9,7 @@ namespace winc {
 
 class desktop : public user_object {
 public:
-	desktop(const std::string &name);
+	explicit desktop(const std::string &name);
 	~desktop();
 	/* override */ std::string name();
 

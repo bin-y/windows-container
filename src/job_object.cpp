@@ -1,7 +1,6 @@
 #include <cstdint>
-#include <windows.h>
+#include <Windows.h>
 #include "job_object.hpp"
-#include "process.hpp"
 #include "windows_error.hpp"
 
 using namespace std;

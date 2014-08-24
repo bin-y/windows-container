@@ -4,10 +4,11 @@
 #include <string>
 #include <vector>
 #include <Windows.h>
+#include "non_copyable.hpp"
 
 namespace winc {
 
-class user_token {
+class user_token : non_copyable {
 public:
 	user_token(const std::string &username, const std::string &password);
 	~user_token();

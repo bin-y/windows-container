@@ -9,10 +9,11 @@
 #include <thread>
 #include <Windows.h>
 #include "action.hpp"
+#include "non_copyable.hpp"
 
 namespace winc {
 
-class timer_queue {
+class timer_queue : non_copyable {
 private:
 	class extra;
 	typedef action<extra> context;
@@ -31,10 +32,6 @@ public:
 
 private:
 	void _thread_entry();
-
-private:
-	timer_queue(const timer_queue &);
-	timer_queue &operator=(const timer_queue &);
 
 private:
 	class extra {

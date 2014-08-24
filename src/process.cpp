@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <vector>
 #include <algorithm>
-#include <windows.h>
+#include <Windows.h>
 extern "C" {
 	#include <extypes.h>
 	#include <exfuncs.h>

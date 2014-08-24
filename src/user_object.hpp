@@ -4,10 +4,11 @@
 #include <string>
 #include <vector>
 #include <Windows.h>
+#include "non_copyable.hpp"
 
 namespace winc {
 
-class user_object {
+class user_object : non_copyable {
 public:
 	struct allowed_ace {
 		allowed_ace(BYTE flags, ACCESS_MASK mask)
@@ -20,7 +21,7 @@ public:
 	};
 
 public:
-	user_object(HANDLE obj) : _handle(obj) {}
+	explicit user_object(HANDLE obj) : _handle(obj) {}
 	virtual ~user_object() {}
 	HANDLE handle() { return _handle; }
 	virtual std::string name();
