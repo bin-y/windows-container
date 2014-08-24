@@ -51,9 +51,9 @@ bool debug_object::wait(PDBGUI_WAIT_STATE_CHANGE state_change)
 	return true;
 }
 
-void debug_object::debug_continue(PCLIENT_ID client_id, NTSTATUS status)
+void debug_object::debug_continue(PCLIENT_ID client_id, NTSTATUS continue_status)
 {
-	NTSTATUS status = NtDebugContinue(_handle, client_id, status);
+	NTSTATUS status = NtDebugContinue(_handle, client_id, continue_status);
 	if (!NT_SUCCESS(status))
 		throw winnt_error(status);
 }

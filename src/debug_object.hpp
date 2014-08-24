@@ -15,7 +15,7 @@ public:
 	~debug_object();
 	void attach(HANDLE process_handle);
 	bool wait(PDBGUI_WAIT_STATE_CHANGE state_change);
-	void debug_continue(PCLIENT_ID client_id, NTSTATUS status);
+	void debug_continue(PCLIENT_ID client_id, NTSTATUS continue_status);
 private:
 	HANDLE _handle;
 };

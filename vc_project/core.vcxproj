@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\container.cpp" />
+    <ClCompile Include="..\src\debug_object.cpp" />
     <ClCompile Include="..\src\desktop.cpp" />
     <ClCompile Include="..\src\job_object.cpp" />
     <ClCompile Include="..\src\login.cpp" />

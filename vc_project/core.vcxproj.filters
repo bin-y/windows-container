@@ -27,6 +27,9 @@
     <ClCompile Include="..\src\timer_queue.cpp">
       <Filter>utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\debug_object.cpp">
+      <Filter>system-wrapper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\login_impl.hpp" />
