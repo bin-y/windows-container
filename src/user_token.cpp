@@ -24,7 +24,7 @@ HANDLE logon_user(const string &username, const string &password)
 
 user_token::user_token(const std::string &username, const std::string &password)
 {
-	set_handle(logon_user(username, password))
+	set_handle(logon_user(username, password));
 }
 
 vector<char> user_token::sid()
@@ -34,7 +34,7 @@ vector<char> user_token::sid()
 	DWORD length;
 	DWORD index;
 
-	if (!::GetTokenInformation(handle(), TokenGroups, NULL, NULL, &length)) {
+	if (!GetTokenInformation(handle(), TokenGroups, NULL, NULL, &length)) {
 		DWORD error_code = GetLastError();
 		if (error_code != ERROR_INSUFFICIENT_BUFFER) {
 			throw windows_error(error_code);
@@ -49,7 +49,7 @@ vector<char> user_token::sid()
 
 	buffer.resize(length);
 	ptg = reinterpret_cast<PTOKEN_GROUPS>(buffer.data());
-	if (!::GetTokenInformation(handle(), TokenGroups, ptg, length, &length)) {
+	if (!GetTokenInformation(handle(), TokenGroups, ptg, length, &length)) {
 		throw windows_error(GetLastError());
 	}
 
@@ -60,7 +60,7 @@ vector<char> user_token::sid()
 				throw runtime_error("empty_sid");
 			}
 			vector<char> sid(length);
-			if (!::CopySid(length, sid.data(), ptg->Groups[index].Sid)) {
+			if (!CopySid(length, sid.data(), ptg->Groups[index].Sid)) {
 				throw windows_error(GetLastError());
 			}
 			return sid;
