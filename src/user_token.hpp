@@ -4,19 +4,14 @@
 #include <string>
 #include <vector>
 #include <Windows.h>
-#include "non_copyable.hpp"
+#include "safe_handle.hpp"
 
 namespace winc {
 
-class user_token : non_copyable {
+class user_token : protected safe_handle {
 public:
 	user_token(const std::string &username, const std::string &password);
-	~user_token();
-	HANDLE handle();
 	std::vector<char> sid();
-
-private:
-	HANDLE _handle;
 };
 
 }

@@ -20,17 +20,13 @@ HANDLE create_job_object()
 }
 
 job_object::job_object()
-	: _handle(create_job_object())
-{}
-
-job_object::~job_object()
 {
-	CloseHandle(_handle);
+	set_handle(create_job_object());
 }
 
 void job_object::assign(HANDLE process_handle)
 {
-	BOOL result = AssignProcessToJobObject(_handle, process_handle);
+	BOOL result = AssignProcessToJobObject(handle(), process_handle);
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
@@ -38,15 +34,10 @@ void job_object::assign(HANDLE process_handle)
 
 void job_object::terminate(int32_t exit_code)
 {
-	BOOL result = TerminateJobObject(_handle, static_cast<UINT>(exit_code));
+	BOOL result = TerminateJobObject(handle(), static_cast<UINT>(exit_code));
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
-}
-
-HANDLE job_object::handle()
-{
-	return _handle;
 }
 
 job_object::limits_info job_object::limits()

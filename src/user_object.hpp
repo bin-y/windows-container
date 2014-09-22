@@ -23,7 +23,6 @@ public:
 public:
 	explicit user_object(HANDLE obj) : _handle(obj) {}
 	virtual ~user_object() {}
-	HANDLE handle() { return _handle; }
 	virtual std::string name();
 	void add_allowed_ace(const std::vector<char> &sid, const allowed_ace &ace);
 	void remove_ace_by_sid(const std::vector<char> &sid);
