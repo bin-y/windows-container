@@ -14,6 +14,7 @@ public:
 	explicit debug_object(bool kill_on_close = true);
 	~debug_object();
 	void attach(HANDLE process_handle);
+	void detach(HANDLE process_handle);
 	bool wait(PDBGUI_WAIT_STATE_CHANGE state_change);
 	void debug_continue(PCLIENT_ID client_id, NTSTATUS continue_status);
 private:

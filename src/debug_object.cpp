@@ -39,6 +39,13 @@ void debug_object::attach(HANDLE process_handle)
 		throw winnt_error(status);
 }
 
+void debug_object::detach(HANDLE process_handle)
+{
+	NTSTATUS status = NtRemoveProcessDebug(process_handle, _handle);
+	if (!NT_SUCCESS(status))
+		throw winnt_error(status);
+}
+
 bool debug_object::wait(PDBGUI_WAIT_STATE_CHANGE state_change)
 {
 	NTSTATUS status = NtWaitForDebugEvent(_handle, FALSE, NULL, state_change);
