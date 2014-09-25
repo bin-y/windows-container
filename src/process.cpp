@@ -17,27 +17,32 @@ using namespace winc;
 
 process::process(HANDLE handle)
 {
-	set_handle(handle);
+	_handle.set(handle);
+}
+
+HANDLE process::handle() const
+{
+	return _handle.get();
 }
 
 void process::terminate(int32_t exit_code)
 {
-	BOOL result = TerminateProcess(handle(), static_cast<UINT>(exit_code));
+	BOOL result = TerminateProcess(_handle.get(), static_cast<UINT>(exit_code));
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
 }
 
-uint32_t process::id()
+uint32_t process::id() const
 {
-	DWORD result = GetProcessId(handle());
+	DWORD result = GetProcessId(_handle.get());
 	return static_cast<uint32_t>(result);
 }
 
-uint32_t process::cpu_time_ms()
+uint32_t process::cpu_time_ms() const
 {
 	ULARGE_INTEGER creation_time, exit_time, kernel_time, user_time;
-	BOOL result = GetProcessTimes(handle(),
+	BOOL result = GetProcessTimes(_handle.get(),
 		(LPFILETIME)&creation_time, (LPFILETIME)&exit_time,
 		(LPFILETIME)&kernel_time, (LPFILETIME)&user_time);
 	if (!result) {
@@ -47,11 +52,11 @@ uint32_t process::cpu_time_ms()
 	return (uint32_t)((kernel_time.QuadPart + user_time.QuadPart) / 10000);
 }
 
-uint32_t process::peak_memory_usage_kb()
+uint32_t process::peak_memory_usage_kb() const
 {
 	PROCESS_MEMORY_COUNTERS pmc;
 	pmc.cb = sizeof(pmc);
-	BOOL result = GetProcessMemoryInfo(handle(), &pmc, sizeof(pmc));
+	BOOL result = GetProcessMemoryInfo(_handle.get(), &pmc, sizeof(pmc));
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
@@ -62,7 +67,7 @@ uint32_t process::peak_memory_usage_kb()
 uint32_t process::virtual_protect(void *address, size_t length, uint32_t new_protect)
 {
 	DWORD old_protect;
-	BOOL result = VirtualProtectEx(handle(), address, length, new_protect, &old_protect);
+	BOOL result = VirtualProtectEx(_handle.get(), address, length, new_protect, &old_protect);
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
@@ -71,7 +76,7 @@ uint32_t process::virtual_protect(void *address, size_t length, uint32_t new_pro
 
 void process::read_memory(const void *address, void *buffer, size_t length)
 {
-	BOOL result = ReadProcessMemory(handle(), address, buffer, length, NULL);
+	BOOL result = ReadProcessMemory(_handle.get(), address, buffer, length, NULL);
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
@@ -79,7 +84,7 @@ void process::read_memory(const void *address, void *buffer, size_t length)
 
 void process::write_memory(void *address, const void *buffer, size_t length)
 {
-	BOOL result = WriteProcessMemory(handle(), address, buffer, length, NULL);
+	BOOL result = WriteProcessMemory(_handle.get(), address, buffer, length, NULL);
 	if (!result) {
 		throw windows_error(GetLastError());
 	}

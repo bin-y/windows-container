@@ -24,17 +24,17 @@ HANDLE logon_user(const string &username, const string &password)
 
 user_token::user_token(const std::string &username, const std::string &password)
 {
-	set_handle(logon_user(username, password));
+	_handle.set(logon_user(username, password));
 }
 
-vector<char> user_token::sid()
+vector<char> user_token::sid() const
 {
 	vector<char> buffer;
 	PTOKEN_GROUPS ptg;
 	DWORD length;
 	DWORD index;
 
-	if (!GetTokenInformation(handle(), TokenGroups, NULL, NULL, &length)) {
+	if (!GetTokenInformation(_handle.get(), TokenGroups, NULL, NULL, &length)) {
 		DWORD error_code = GetLastError();
 		if (error_code != ERROR_INSUFFICIENT_BUFFER) {
 			throw windows_error(error_code);
@@ -49,7 +49,7 @@ vector<char> user_token::sid()
 
 	buffer.resize(length);
 	ptg = reinterpret_cast<PTOKEN_GROUPS>(buffer.data());
-	if (!GetTokenInformation(handle(), TokenGroups, ptg, length, &length)) {
+	if (!GetTokenInformation(_handle.get(), TokenGroups, ptg, length, &length)) {
 		throw windows_error(GetLastError());
 	}
 

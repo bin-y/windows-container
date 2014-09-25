@@ -10,8 +10,8 @@ class safe_handle : non_copyable {
 public:
 	safe_handle();
 	~safe_handle();
-	void set_handle(HANDLE handle);
-	HANDLE handle();
+	void set(HANDLE handle);
+	HANDLE get() const;
 
 private:
 	void _close();

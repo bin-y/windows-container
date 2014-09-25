@@ -17,13 +17,13 @@ safe_handle::~safe_handle()
 	_close();
 }
 
-void safe_handle::set_handle(HANDLE handle)
+void safe_handle::set(HANDLE handle)
 {
 	_close();
 	_handle = handle;
 }
 
-HANDLE safe_handle::handle()
+HANDLE safe_handle::get() const
 {
 	return _handle;
 }

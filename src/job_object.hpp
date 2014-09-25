@@ -3,11 +3,12 @@
 
 #include <cstdint>
 #include <Windows.h>
+#include "non_copyable.hpp"
 #include "safe_handle.hpp"
 
 namespace winc {
 
-class job_object : protected safe_handle {
+class job_object : non_copyable {
 public:
 	class limits_info : public ::JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
 	public:
@@ -29,10 +30,14 @@ public:
 
 public:
 	job_object();
+	HANDLE handle() const;
 	void assign(HANDLE process_handle);
 	void terminate(std::int32_t exit_code);
 	limits_info limits();
 	ui_restrictions_info ui_restrictions();
+
+private:
+	safe_handle _handle;
 };
 
 }

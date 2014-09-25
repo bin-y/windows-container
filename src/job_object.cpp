@@ -21,12 +21,17 @@ HANDLE create_job_object()
 
 job_object::job_object()
 {
-	set_handle(create_job_object());
+	_handle.set(create_job_object());
+}
+
+HANDLE job_object::handle() const
+{
+	return _handle.get();
 }
 
 void job_object::assign(HANDLE process_handle)
 {
-	BOOL result = AssignProcessToJobObject(handle(), process_handle);
+	BOOL result = AssignProcessToJobObject(_handle.get(), process_handle);
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
@@ -34,7 +39,7 @@ void job_object::assign(HANDLE process_handle)
 
 void job_object::terminate(int32_t exit_code)
 {
-	BOOL result = TerminateJobObject(handle(), static_cast<UINT>(exit_code));
+	BOOL result = TerminateJobObject(_handle.get(), static_cast<UINT>(exit_code));
 	if (!result) {
 		throw windows_error(GetLastError());
 	}
